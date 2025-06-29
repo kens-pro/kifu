@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrapiプロジェクト執行役員向けプレゼンテーション</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', Meiryo, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 50%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 48px;
+            opacity: 0.95;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Benefits Grid */
+        .benefits-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 24px;
+        }
+
+        .benefit-icon.heart { background: linear-gradient(135deg, #ff6b6b, #ee5a52); }
+        .benefit-icon.building { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
+        .benefit-icon.globe { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        .benefit-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #2d3748;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #4a5568;
+            margin-bottom: 48px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .problem-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 32px;
+            border-radius: 16px;
+            border-left: 6px solid #e74c3c;
+            backdrop-filter: blur(10px);
+        }
+
+        .problem-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .problem-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: #fee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: #e74c3c;
+            font-size: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .problem-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .solution-section .section-title,
+        .solution-section .section-subtitle {
+            color: white;
+        }
+
+        .reasons-container {
+            margin-top: 48px;
+            space-y: 48px;
+        }
+
+        .reason-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .reason-header {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 24px;
+        }
+
+        .reason-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin-right: 24px;
+            flex-shrink: 0;
+        }
+
+        .reason-content h3 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .reason-content p {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            opacity: 0.95;
+        }
+
+        .highlight-box {
+            background: #ffd700;
+            color: #2d3748;
+            padding: 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Conclusion Section */
+        .conclusion-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .conclusion-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 60px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .conclusion-icon {
+            font-size: 64px;
+            margin-bottom: 32px;
+        }
+
+        .conclusion-card h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 32px;
+            line-height: 1.3;
+        }
+
+        .conclusion-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .conclusion-highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin: 32px 0;
+        }
+
+        .final-message {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 8px;
+        }
+
+        .footer .subtitle {
+            color: #a0aec0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .benefits-grid,
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reason-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .reason-number {
+                margin-right: 0;
+                margin-bottom: 16px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .benefit-card,
+        .problem-card,
+        .reason-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .strong {
+            color: #e67e22;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">
+                    🎯 社長向け戦略提案書
+                </div>
+                <h1>
+                    Wrapiプロジェクト
+                    <div class="subtitle">なぜ「購入型」クラウドファンディングが最適なのか</div>
+                </h1>
+                <p>
+                    社会貢献と事業性を両立する戦略的アプローチで、<br>
+                    Wrapiの未来を切り拓く最適解をご提案いたします
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <h2 class="section-title">購入型が実現する3つの価値</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon heart">❤️</div>
+                    <h3>社会貢献の可視化</h3>
+                    <p>支援者の名前をピアノ横に掲載し、具体的な貢献実感を提供。「未来に残る応援」として支援者の共感を深く刻みます。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon building">🏢</div>
+                    <h3>事業性との両立</h3>
+                    <p>Wrapiの認知度向上と将来の顧客獲得を自然に実現。会計処理も明確で企業活動として無理なく位置づけられます。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon globe">🌍</div>
+                    <h3>持続可能なモデル</h3>
+                    <p>テンプレート化により他地域・施設への横展開が容易。将来の事業拡大を見据えた再現性の高いモデルを構築できます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2 class="section-title">よくある誤解：「社会貢献＝寄付型」とは限らない</h2>
+            <p class="section-subtitle">
+                法人が寄付型クラウドファンディングを実施する際の<span class="strong">見えない壁</span>
+            </p>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <div class="problem-icon">⚠️</div>
+                        <h3>企業活動との相性問題</h3>
+                    </div>
+                    <p>税務上の公益性が厳しく問われ、営利活動との両立が困難。手続きも複雑になりがちです。</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <div class="problem-icon">👁️</div>
+                        <h3>支援者の貢献実感が希薄</h3>
+                    </div>
+                    <p>「応援して終わり」となり、継続的な関係構築に繋がりにくい傾向があります。</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-header">
+                        <div class="problem-icon">⚡</div>
+                        <h3>単発イベントで終了</h3>
+                    </div>
+                    <p>一過性の活動として認識され、事業展開への波及効果が限定的になります。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="container">
+            <h2 class="section-title">Wrapiプロジェクトに「購入型」が最適な３つの理由</h2>
+            <p class="section-subtitle">
+                単なる社会貢献で終わらせず、<span class="strong">Wrapiの価値を社会に広げ、持続可能な事業として展開</span>
+            </p>
+            
+            <div class="reasons-container">
+                <!-- Reason 1 -->
+                <div class="reason-card">
+                    <div class="reason-header">
+                        <div class="reason-number">1</div>
+                        <div class="reason-content">
+                            <h3>社会貢献を"見える形"にし、支援者の共感を深く刻む</h3>
+                            <p>
+                                購入型では「リターン」を通じて、寄付型では難しかった<span class="strong">「支援者の具体的な貢献実感」</span>を提供できます。
+                            </p>
+                            <div class="highlight-box">
+                                <strong>今回のリターン例：</strong> 設置されるピアノ横に「あなたのお名前」を掲載！<br>
+                                支援者が「自分もこの活動の一部だ」という<strong>未来に残る応援</strong>を実感できます。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reason 2 -->
+                <div class="reason-card">
+                    <div class="reason-header">
+                        <div class="reason-number">2</div>
+                        <div class="reason-content">
+                            <h3>事業との両立が自然にでき、未来のWrapiに繋がる</h3>
+                            <p>
+                                社会貢献活動を通じて<span class="strong">「Wrapiの認知度向上」や「将来の導入検討」</span>への自然な導線を作成。
+                            </p>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="feature-icon">💰</div>
+                                    <strong>会計処理の明確性</strong>
+                                    「売上」「広告宣伝費」として一貫した計上が可能
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">👥</div>
+                                    <strong>顧客獲得の可能性</strong>
+                                    支援者が将来のWrapiユーザーになる潜在性
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reason 3 -->
+                <div class="reason-card">
+                    <div class="reason-header">
+                        <div class="reason-number">3</div>
+                        <div class="reason-content">
+                            <h3>将来の横展開がしやすく、事業の"型"を確立</h3>
+                            <p>
+                                この仕組みを<span class="strong">「持続可能なモデル」</span>として確立し、様々な地域や課題に応用可能。
+                            </p>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <div class="feature-icon">🏆</div>
+                                    <strong>テンプレート化</strong>
+                                    他の自治体・教育機関との連携時にスムーズな展開
+                                </div>
+                                <div class="feature-item">
+                                    <div class="feature-icon">⚡</div>
+                                    <strong>効率的な拡大</strong>
+                                    設計コスト削減と再現性の高いモデル構築
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conclusion Section -->
+    <section class="conclusion-section">
+        <div class="container">
+            <div class="conclusion-card">
+                <div class="conclusion-icon">✅</div>
+                <h2>結論：Wrapiには「購入型（All-in）」がベストです</h2>
+                <div class="conclusion-text">
+                    今回のWrapiクラウドファンディングは、<br>
+                    <span class="strong">「社会貢献（若者支援）」</span>と<span class="strong">「事業性（Wrapiの販促）」</span>を同時に実現する、画期的なプロジェクトです。
+                </div>
+                <div class="conclusion-highlight">
+                    「社会貢献の形を"未来に残す"」のが購入型です。
+                </div>
+                <div class="conclusion-text">
+                    寄付型が「その時の善意」なら、<br>
+                    <span class="strong">購入型は「未来につながる支援」になります。</span>
+                </div>
+                <div class="final-message">
+                    この「購入型（All-in）」を基本形式とし、寄付に近い設計で進行することが、<br>
+                    Wrapiの未来を拓く上で最も効果的であると確信しております。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>ご確認のほどよろしくお願いいたします。</p>
+            <p class="subtitle">Wrapiプロジェクト企画書 - 社長向け戦略提案</p>
+        </div>
+    </footer>
+</body>
+</html>
